@@ -8,11 +8,15 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFolders = fs.readdirSync('./commands');
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
+for (const folder of commandFolders) {
+    const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+    
+    for (const file of commandFiles) {
+        const command = require(`./commands/${folder}/${file}`);
+        client.commands.set(command.name, command);
+    }
 }
 
 client.on('ready', () => {
@@ -32,6 +36,22 @@ client.on('message', msg => {
     }
 
     const cmd = client.commands.get(cmd_name);
+
+    // Check if this is a server-only command
+    if (cmd.guildOnly && msg.channel.type === 'dm') {
+        return msg.reply('I can\'t execute that command inside DMs!');
+    }
+
+    // Need to set args to true in command file
+    if (cmd.args && !args.length) {
+        let reply = `You didn't provide any arguments, ${message.author}!`;
+
+        if (cmd.usage) {
+            reply += `\nUsage: ${prefix}${cmd_name} ${cmd.usage}`;
+        }
+
+        return msg.reply(reply);
+    }
 
     try {
         cmd.execute(msg, args);

@@ -1,11 +1,9 @@
 module.exports = {
 	name: 'prune',
+    args: true,
+    usage: '<num> (num is a number between 1 and 100)',
 	description: 'Bot deletes a user-specified amount of messages from the channel (1-100)',
 	execute(msg, args) {
-		if (!args.length) {
-            return msg.reply(`Please provide a number between 1 and 100.`);
-         }
- 
          // Prune the current message as well
          const amount = parseInt(args[0]) + 1;
  
