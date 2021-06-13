@@ -18,6 +18,8 @@ Coded using discord.js https://discordjs.guide/
 10. Sharding with Keyv
 
 **Personal to-do list:**
+------
+
 0. Getting started guide on personal website
 1. Switch from Windows to Linux
 2. Switch from VSCode to Neovim/KaKoune/Helix
