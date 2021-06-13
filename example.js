@@ -12,6 +12,7 @@ client.on('message', msg => {
     if (msg.content === 'ping') {
         msg.reply('pong');
     }
+    console.log(msg.content)
 });
 
-client.login('token');
+client.login(process.env.TOKEN);
