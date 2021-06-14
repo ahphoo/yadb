@@ -1,8 +1,9 @@
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 const fs = require('fs');
-const {prefix, token} = require('./config.json');
+//const {prefix, token} = require('./config.json');
+const prefix = '!';
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -63,5 +64,5 @@ client.on('message', msg => {
     console.log(msg.content);
 });
 
-//client.login(process.env.TOKEN);  Login using TOKEN stored in environment variable
-client.login(token);
+client.login(process.env.TOKEN);  //Login using TOKEN stored in environment variable
+//client.login(token);
