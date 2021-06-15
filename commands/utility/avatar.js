@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'avatar',
+    aliases: ['icon', 'pfp'],
 	description: 'Bot replies with current user\'s avatar or a list of user\'s avatars',
 	execute(msg, args) {
 		if (!msg.mentions.users.size) {
