@@ -32,6 +32,7 @@ async function getProblems(allProblems, freeProblems, paidProblems, totalProblem
 	try {
 		let resp = await axios.get(ltApiUrl);
 		totalProblems = resp.data.num_total;
+		//console.log(resp.data);
 		resp.data.stat_status_pairs.forEach(problem => {
 			const newProblem = new Problem(problem);
 

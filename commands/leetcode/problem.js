@@ -11,7 +11,7 @@ module.exports = {
 			diff = args[0];
 		}
 
-        console.log(allProblems);
+        //console.log(allProblems);
 
         problemType(allProblems, msg, diff);
 
