@@ -3,7 +3,7 @@ const { prefix } = require('../config.json');
 
 module.exports = {
 	name: 'message',
-	execute(msg, client) {
+	execute(msg, client, allProblems, freeProblems, paidProblems) {
         if (!msg.content.startsWith(prefix) || msg.author.bot) {
             return;
         }
@@ -62,7 +62,7 @@ module.exports = {
         setTimeout(() => timestamps.delete(msg.author.id), cooldown_amount);
     
         try {
-            cmd.execute(msg, args);
+            cmd.execute(msg, args, client, allProblems, freeProblems, paidProblems);
         } catch (err) {
             console.error(err);
             msg.reply('there was an error trying to execute that command!');
