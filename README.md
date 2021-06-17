@@ -8,7 +8,7 @@ Hosted on AWS EC2.
 **To-do list**
 ------
 
-1. Create command(s) to pull Leetcode questions (by difficulty, tags, name, etc)
+1. Create command(s) to pull Leetcode questions (by tags, name, etc)
 2. Create command(s) to display Leetcode user info
 3. Automate testing
 4. GIF of bot running
