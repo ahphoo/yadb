@@ -82,25 +82,3 @@ async function getProblems(allProblems, freeProblems, paidProblems, totalProblem
 
 //client.login(process.env.TOKEN);  //Login using TOKEN stored in environment variable
 client.login(token);
-
-	// axios
-	// .get(ltApiUrl)
-	// .then(resp => {
-	// 	totalProblems = resp.data.num_total;
-	// 	resp.data.stat_status_pairs.forEach((problem) => {
-	// 		const newProblem = new Problem(problem);
-	// 		// ToDo need to fix .filter but this works in the mean time
-	// 		if (newProblem.paidOnly === false) {
-	// 			freeProblems.push(newProblem);
-	// 		}
-	// 		else {
-	// 			paidProblems.push(newProblem);
-	// 		}
-	// 		allProblems.push(newProblem);
-	// 	});
-	// 	console.log(allProblems);
-	// })
-	// .catch((err) => {
-	// 	console.log(err);
-	// 	msg.reply('Error while fetching problems from Leetcode :(');
-	// });
