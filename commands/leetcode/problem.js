@@ -11,32 +11,28 @@ module.exports = {
 			diff = args[0];
 		}
 
-        //console.log(allProblems);
-
-        problemType(allProblems, msg, diff);
-
-        // if (cmd === 'info') {
-        //     msg.channel.send(
-        //         `Leetcode currently has a total of ${totalProblems} problems of which ${freeProblems.length} are free, and ${paidProblems.length} are paid.`,
-        //     );
-        // }
-        // else if (cmd === 'free') {
-        //     problemType(freeProblems, msg, diff);
-        // }
-        // else if (cmd === 'paid') {
-        //     problemType(paidProblems, msg, diff);
-        // }
-        // else if (cmd === 'help') {
-        //     msg.channel.send(
-        //         '```Usage:\n\n\t!problem (without args) - gives you a random problem of any difficulty either paid/free.' +
-        //         '\n\n\t!problem free - gives you a random freely accessible problem of any difficulty.' +
-        //         '\n\n\t!problem paid - gives you a random paid/locked problem of any difficulty.' +
-        //         '\n\nAdding difficulty modifiers:\n\n\t!problem <free | paid> <easy | medium | hard> - lets you pick a random free or paid problem of the chosen difficulty.```',
-        //     );
-        // }
-        // else {
-        //     problemType(allProblems, msg, diff);
-        // }
+        if (args.length < 2) {
+            problemType(allProblems, msg, diff);
+        }
+        else if (args[1] === 'info') {
+            msg.channel.send(
+                `Leetcode currently has a total of ${totalProblems} problems of which ${freeProblems.length} are free, and ${paidProblems.length} are paid.`,
+            );
+        }
+        else if (args[1] === 'free') {
+            problemType(freeProblems, msg, diff);
+        }
+        else if (args[1] === 'paid') {
+            problemType(paidProblems, msg, diff);
+        }
+        else if (args[1] === 'help') {
+            msg.channel.send(
+                '```Usage:\n\n\t!problem (without args) - gives you a random problem of any difficulty either paid/free.' +
+                '\n\n\t!problem free - gives you a random freely accessible problem of any difficulty.' +
+                '\n\n\t!problem paid - gives you a random paid/locked problem of any difficulty.' +
+                '\n\nAdding difficulty modifiers:\n\n\t!problem <free | paid> <easy | medium | hard> - lets you pick a random free or paid problem of the chosen difficulty.```',
+            );
+        }
 	},
 };
 
@@ -60,8 +56,7 @@ module.exports = {
 	const embed = new MessageEmbed()
 		.setTitle(aProblem.title)
 		.setColor('#f89f1b')
-		// online image from leetcode website for thumbnail (pls don't go down)
-		.setThumbnail('https://leetcode.com/static/images/LeetCode_logo_rvs.png')
+		.setThumbnail('../../images/LeetCode_logo_rvs.png')
 		// ToDo Scrape problem descriptions, add to object and embed (haHA might not do this)
 		.setDescription(`${aProblem.difficulty} ${
 			aProblem.paidOnly ? 'locked/paid' : 'unlocked/free'
