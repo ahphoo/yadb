@@ -9,10 +9,8 @@ const ltApiUrl = 'https://leetcode.com/api/problems/all/';
 let allProblems = [];
 let freeProblems = [];
 let paidProblems = [];
-let totalProblems;
 
 const Discord = require('discord.js');
-
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
@@ -28,15 +26,13 @@ class Problem {
 	}
 }
 
-async function getProblems(allProblems, freeProblems, paidProblems, totalProblems) {
+async function getProblems(allProblems, freeProblems, paidProblems) {
 	try {
 		let resp = await axios.get(ltApiUrl);
-		totalProblems = resp.data.num_total;
-		//console.log(resp.data);
 		resp.data.stat_status_pairs.forEach(problem => {
 			const newProblem = new Problem(problem);
 
-			// ToDo need to fix .filter but this works in the mean time
+			// Todo: need to see if I can use .filter but this works in the mean time
 			if (newProblem.paidOnly === false) {
 				freeProblems.push(newProblem);
 			}
@@ -50,12 +46,11 @@ async function getProblems(allProblems, freeProblems, paidProblems, totalProblem
 		return 1;
 	} catch(err) {
 		console.log(err);
-		msg.reply('Error while fetching problems from Leetcode :(');
 	}
 }
 
 (async function(){
-	await getProblems(allProblems, freeProblems, paidProblems, totalProblems);
+	await getProblems(allProblems, freeProblems, paidProblems);
 
 	const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
