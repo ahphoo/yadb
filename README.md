@@ -3,8 +3,6 @@ Yet another discord bot.
 
 Coded using discord.js https://discordjs.guide/
 
-Hosted on AWS EC2.
-
 **To-do list**
 ------
 
